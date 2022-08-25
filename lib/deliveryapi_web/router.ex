@@ -7,6 +7,9 @@ defmodule DeliveryapiWeb.Router do
 
   scope "/api", DeliveryapiWeb do
     pipe_through :api
+
+    # user onboarding
+    post "/customers/onboarding/base_data", CustomerOnboardingController, :create_base_data
   end
 
   # Enables LiveDashboard only for development

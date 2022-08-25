@@ -1,9 +1,5 @@
 defmodule Deliveryapi do
-  @moduledoc """
-  Deliveryapi keeps the contexts that define your domain
-  and business logic.
+  alias Customers.Services.Onboarding.CreateBaseData, as: CreateCustomerBaseData
 
-  Contexts are also responsible for managing your data, regardless
-  if it comes from the database, an external API or others.
-  """
+  defdelegate create_customer_base_data(params), to: CreateCustomerBaseData, as: :call
 end

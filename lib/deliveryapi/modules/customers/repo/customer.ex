@@ -2,7 +2,7 @@ defmodule Customers.Repo.Customer do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @primary_key {:id, :binary_id, autogenerate: false}
+  @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:name, :email, :password, :phone_number]
 
   schema "customers" do
@@ -17,15 +17,28 @@ defmodule Customers.Repo.Customer do
     timestamps()
   end
 
-  # Changeset for data criation
-  def changeset(params) do
-    %__MODULE__{}
-    |> cast(params, @required_params ++ [:is_active, :onboarding_status, :is_email_verified])
-    |> validate_required(@required_params)
-    |> validate_format(:email, ~r/@/)
-    |> validate_format(:phone_number, ~r/\d/)
-    |> unique_constraint([:email])
-    |> put_password_hash
+  # Changeset for data creation
+  def changeset(%{action: "create_base_data", params: params}) do
+    formated_params =
+      Map.merge(
+        %{
+          "is_active" => false,
+          "is_email_verified" => false
+        },
+        params
+      )
+
+    result =
+      %__MODULE__{}
+      |> cast(formated_params, [:name, :email, :phone_number, :is_active, :is_email_verified])
+      |> validate_required([:name, :email, :phone_number])
+      |> validate_length(:name, min: 5)
+      |> validate_format(:email, ~r/@/)
+      |> validate_format(:phone_number, ~r/\d/)
+      |> validate_length(:phone_number, is: 11)
+      |> unique_constraint([:email])
+
+    {:ok, result}
   end
 
   defp put_password_hash(
