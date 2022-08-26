@@ -10,6 +10,6 @@ defmodule Cities.Repo.City do
     field :state, :string
     field :state_short_name, :string
 
-    timestamps()
+    timestamps(type: :utc_datetime)
   end
 end

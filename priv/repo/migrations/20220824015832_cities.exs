@@ -8,7 +8,7 @@ defmodule Deliveryapi.Repo.Migrations.Cities do
       add :state, :string
       add :state_short_name, :string
 
-      timestamps()
+      timestamps(type: :timestamptz)
     end
   end
 end

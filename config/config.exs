@@ -14,6 +14,7 @@ config :deliveryapi, Deliveryapi.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
 
+config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 # Configures the endpoint
 config :deliveryapi, DeliveryapiWeb.Endpoint,
   url: [host: "localhost"],

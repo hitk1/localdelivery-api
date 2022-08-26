@@ -27,9 +27,11 @@ defmodule Customers.Services.Onboarding.CreateBaseData do
            "name" => name,
            "email" => email,
            "phone_number" => phone_number
-         } = params,
+         },
          customer_id
        ) do
+    {:ok, now} = DateTime.now("America/Sao_Paulo")
+
     update_query =
       from(c in Customer,
         where: c.id == ^customer_id,
@@ -37,7 +39,8 @@ defmodule Customers.Services.Onboarding.CreateBaseData do
           set: [
             name: ^name,
             email: ^email,
-            phone_number: ^phone_number
+            phone_number: ^phone_number,
+            updated_at: ^now
           ]
         ]
       )
@@ -47,6 +50,4 @@ defmodule Customers.Services.Onboarding.CreateBaseData do
       error -> {:error, "Error on update existing user"}
     end
   end
-
-  defp deal_error(error), do: {:error, error}
 end

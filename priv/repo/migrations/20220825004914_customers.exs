@@ -10,7 +10,7 @@ defmodule Deliveryapi.Repo.Migrations.Customers do
       add :is_active, :boolean, default: false
       add :is_email_verified, :boolean, default: false
 
-      timestamps()
+      timestamps(type: :timestamptz)
     end
 
     create unique_index(:customers, [:email])

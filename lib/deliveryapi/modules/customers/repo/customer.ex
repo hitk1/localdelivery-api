@@ -14,7 +14,7 @@ defmodule Customers.Repo.Customer do
     field :is_active, :boolean
     field :is_email_verified, :boolean
 
-    timestamps()
+    timestamps(type: :utc_datetime)
   end
 
   # Changeset for data creation

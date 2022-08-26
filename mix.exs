@@ -47,7 +47,8 @@ defmodule Deliveryapi.MixProject do
       {:pbkdf2_elixir, "~> 1.3"},
       {:tesla, "~> 1.4"},
       {:guardian, "~> 2.0"},
-      {:decimal, "~> 2.0"}
+      {:decimal, "~> 2.0"},
+      {:tzdata, "~> 1.1"}
     ]
   end
 
