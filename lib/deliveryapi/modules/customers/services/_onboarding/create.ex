@@ -3,6 +3,7 @@ defmodule Customers.Services.Onboarding.CreateBaseData do
 
   alias Customers.Repo.Customer
   alias Deliveryapi.Repo
+  alias Deliveryapi.Core.Tools.DateFormatter
 
   def call(%{"email" => user_email} = params) do
     case Customer.changeset(%{action: "create_base_data", params: params}) do
@@ -30,8 +31,6 @@ defmodule Customers.Services.Onboarding.CreateBaseData do
          },
          customer_id
        ) do
-    {:ok, now} = DateTime.now("America/Sao_Paulo")
-
     update_query =
       from(c in Customer,
         where: c.id == ^customer_id,
@@ -40,7 +39,7 @@ defmodule Customers.Services.Onboarding.CreateBaseData do
             name: ^name,
             email: ^email,
             phone_number: ^phone_number,
-            updated_at: ^now
+            updated_at: ^DateFormatter.now()
           ]
         ]
       )

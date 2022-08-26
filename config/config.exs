@@ -14,7 +14,10 @@ config :deliveryapi, Deliveryapi.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
 
+# Timezone databases
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+
+config :deliveryapi, Deliveryapi.Core.Tools.DateFormatter, default_timezone: "America/Sao_Paulo"
 # Configures the endpoint
 config :deliveryapi, DeliveryapiWeb.Endpoint,
   url: [host: "localhost"],
