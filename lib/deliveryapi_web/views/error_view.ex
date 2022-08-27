@@ -4,6 +4,7 @@ defmodule DeliveryapiWeb.ErrorView do
   import Ecto.Changeset, only: [traverse_errors: 2]
 
   alias Ecto.Changeset
+  alias Deliveryapi.Error
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.
@@ -21,6 +22,13 @@ defmodule DeliveryapiWeb.ErrorView do
   def render("error.json", %{error: %Changeset{} = changeset}) do
     %{
       message: translate_errors(changeset)
+    }
+  end
+
+  def render("error.json", %{error: %Error{error_code: error_code, error: error_message}}) do
+    %{
+      error_code: error_code,
+      error: error_message
     }
   end
 

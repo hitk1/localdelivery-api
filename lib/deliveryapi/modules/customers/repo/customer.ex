@@ -5,6 +5,8 @@ defmodule Customers.Repo.Customer do
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:name, :email, :password, :phone_number]
 
+  @derive {Jason.Encoder, only: [:id, :name, :email, :phone_number]}
+
   schema "customers" do
     field :name, :string
     field :email, :string

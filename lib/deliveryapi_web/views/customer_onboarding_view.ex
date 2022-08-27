@@ -7,4 +7,6 @@ defmodule DeliveryapiWeb.CustomerOnboardingView do
       user_id: user_id
     }
   end
+
+  def render("customer_base_data.json", %{customer: customer}), do: %{customer: customer}
 end

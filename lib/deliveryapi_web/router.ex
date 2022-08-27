@@ -10,6 +10,11 @@ defmodule DeliveryapiWeb.Router do
 
     # user onboarding
     post "/customers/onboarding/base_data", CustomerOnboardingController, :create_base_data
+
+    get "/customers/onboarding/base_data/:customer_id",
+        CustomerOnboardingController,
+        :get_base_data
+
     # post "/customers/onboarding/address", CustomerOnboardingController, :create_address
   end
 
