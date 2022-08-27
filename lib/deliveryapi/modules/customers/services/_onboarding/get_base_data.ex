@@ -11,8 +11,8 @@ defmodule Customers.Services.Onboarding.GetBaseData do
   end
 
   defp get_data(customer_id) do
-    case Repo.get(Customer, customer_id) do
-      nil -> {:error, Error.not_found("User not found")}
+    case Repo.get_by(Customer, id: customer_id, is_active: false, is_email_verified: false) do
+      nil -> {:error, Error.not_found("Customer not found")}
       customer -> {:ok, customer}
     end
   end

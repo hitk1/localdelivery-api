@@ -22,6 +22,11 @@ defmodule DeliveryapiWeb.CustomerOnboardingController do
     end
   end
 
-  # def create_address(conn, params) do
-  # end
+  def create_address(conn, params) do
+    with {:ok, %{id: id}, status_code} <- Deliveryapi.create_customer_address(params) do
+      conn
+      |> put_status(status_code)
+      |> render("customer_address_created.json", address_id: id)
+    end
+  end
 end
