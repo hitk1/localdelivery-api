@@ -4,8 +4,8 @@ defmodule Deliveryapi.MixProject do
   def project do
     [
       app: :deliveryapi,
-      version: "0.1.0",
-      elixir: "~> 1.7",
+      version: "0.1.1",
+      elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -33,22 +33,26 @@ defmodule Deliveryapi.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.13"},
+      {:phoenix, "~> 1.6.11"},
       {:phoenix_ecto, "~> 4.4"},
-      {:ecto_sql, "~> 3.4"},
+      {:ecto_sql, "~> 3.6"},
       {:postgrex, "~> 0.15.9"},
-      {:phoenix_live_dashboard, "~> 0.4"},
-      {:telemetry_metrics, "~> 0.4"},
-      {:telemetry_poller, "~> 0.4"},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
+      {:phoenix_live_dashboard, "~> 0.6"},
+      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_poller, "~> 1.0"},
+      {:gettext, "~> 0.18"},
+      {:jason, "~> 1.2"},
+      {:plug_cowboy, "~> 2.5"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:pbkdf2_elixir, "~> 1.3"},
       {:tesla, "~> 1.4"},
       {:guardian, "~> 2.0"},
       {:decimal, "~> 2.0"},
-      {:tzdata, "~> 1.1"}
+      {:tzdata, "~> 1.1"},
+      {:swoosh, "~> 1.3"},
+      {:hackney, "~> 1.18"},
+      {:cowboy, "~> 2.9"},
+      {:ranch, "~> 1.8"}
     ]
   end
 

@@ -10,6 +10,7 @@ defmodule DeliveryapiWeb.Router do
 
     # user onboarding
     post "/customers/onboarding/base_data", CustomerOnboardingController, :create_base_data
+    # post "/customers/onboarding/address", CustomerOnboardingController, :create_address
   end
 
   # Enables LiveDashboard only for development

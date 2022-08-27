@@ -4,7 +4,7 @@ defmodule DeliveryapiWeb.CustomerOnboardingController do
   alias Customers.Repo.Customer
   alias DeliveryapiWeb.FallbackController
 
-  action_fallback FallbackController
+  action_fallback(FallbackController)
 
   def create_base_data(conn, params) do
     with {:ok, %{id: id}, status_code} <- Deliveryapi.create_customer_base_data(params) do
@@ -13,4 +13,7 @@ defmodule DeliveryapiWeb.CustomerOnboardingController do
       |> render("customer_base_data_created.json", user_id: id)
     end
   end
+
+  # def create_address(conn, params) do
+  # end
 end
