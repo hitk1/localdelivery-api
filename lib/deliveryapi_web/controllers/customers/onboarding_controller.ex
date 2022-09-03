@@ -2,6 +2,7 @@ defmodule DeliveryapiWeb.CustomerOnboardingController do
   use DeliveryapiWeb, :controller
 
   alias Customers.Repo.Customer
+  alias CustomerAddresses.Repo.CustomerAddress
   alias DeliveryapiWeb.FallbackController
 
   action_fallback(FallbackController)
@@ -27,6 +28,14 @@ defmodule DeliveryapiWeb.CustomerOnboardingController do
       conn
       |> put_status(status_code)
       |> render("customer_address_created.json", address_id: id)
+    end
+  end
+
+  def get_address(conn, params) do
+    with {:ok, address} <- Deliveryapi.get_address(params) do
+      conn
+      |> put_status(:ok)
+      |> render("customer_address.json", address: address)
     end
   end
 end

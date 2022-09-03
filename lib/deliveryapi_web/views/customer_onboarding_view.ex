@@ -16,4 +16,30 @@ defmodule DeliveryapiWeb.CustomerOnboardingView do
       address_id: address_id
     }
   end
+
+  def render("customer_address.json", %{address: address}) do
+    {
+      address,
+      number,
+      complement,
+      neighborhood,
+      address_alias,
+      city_name,
+      ibge_code,
+      state
+    } = address
+
+    %{
+      address: %{
+        address: address,
+        number: number,
+        complement: complement,
+        neighborhood: neighborhood,
+        address_alias: address_alias,
+        city_name: city_name,
+        ibge_code: ibge_code,
+        state: state
+      }
+    }
+  end
 end
