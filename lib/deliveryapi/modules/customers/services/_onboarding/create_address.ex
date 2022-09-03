@@ -5,7 +5,7 @@ defmodule Customers.Services.Onboarding.CreateAddress do
   alias Cities.Services.GetCityByIbgeCode
   alias CustomerAddresses.Repo.CustomerAddress
   alias Customers.Repo.Customer
-  alias Deliveryapi.{Repo, Error}
+  alias Deliveryapi.{Error, Repo}
 
   def call(params) do
     case CustomerAddress.validate_create_params(params) do
@@ -34,13 +34,13 @@ defmodule Customers.Services.Onboarding.CreateAddress do
             "address_alias" => address_alias
           }
 
-          # Solve the cast in "customer_id"
           case Repo.get_by(CustomerAddress, customer_id: customer_id, address_alias: address_alias) do
             %CustomerAddress{} = existing_address ->
               update_existing_address(create_params, Map.get(existing_address, :id))
 
             nil ->
               create_new_address(create_params)
+              |> handle_create_address()
           end
         end
 
@@ -49,12 +49,17 @@ defmodule Customers.Services.Onboarding.CreateAddress do
     end
   end
 
+  defp handle_create_address({:ok, address}), do: {:ok, address, :created}
+
+  defp handle_create_address({:error, _error_changeset} = error_action), do: error_action
+
   defp create_new_address(params) do
     case CustomerAddress.entity_changeset(params) do
       {:ok, %Ecto.Changeset{valid?: true} = changeset} ->
         Repo.insert(changeset)
 
       {:ok, changeset} ->
+        IO.puts("Error on create new address", label: "create address")
         {:error, changeset}
     end
   end
@@ -85,9 +90,9 @@ defmodule Customers.Services.Onboarding.CreateAddress do
         ]
       )
 
-    case Repo.update_al(update_query, []) do
-      {1, nil} -> {:ok, %{address_id: address_id}, :ok}
-      error -> {:error, "Error on updating existing address"}
+    case Repo.update_all(update_query, []) do
+      {1, nil} -> {:ok, %{id: address_id}, :ok}
+      _ -> {:error, "Error on updating existing address"}
     end
   end
 

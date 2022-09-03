@@ -5,7 +5,8 @@ defmodule CustomerAddresses.Repo.CustomerAddress do
   alias Customers.Repo.Customer
   alias Cities.Repo.City
 
-  @primery_key {:id, :binary_id, autogenerate: true}
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
   @params_create_required [
     :address,
     :number,
@@ -35,7 +36,7 @@ defmodule CustomerAddresses.Repo.CustomerAddress do
     field :address_alias, :string
 
     belongs_to(:customer, Customer, foreign_key: :customer_id)
-    has_one(:city, City, foreign_key: :city_id)
+    belongs_to(:city, City, foreign_key: :city_id)
 
     timestamps(type: :utc_datetime)
   end
@@ -73,6 +74,8 @@ defmodule CustomerAddresses.Repo.CustomerAddress do
         @entity_schema
       }
       |> cast(params, Map.keys(@entity_schema))
+      |> foreign_key_constraint(:customer_id)
+      |> foreign_key_constraint(:city_id)
       |> unique_constraint([:customer_id, :address_alias])
 
     {:ok, result}

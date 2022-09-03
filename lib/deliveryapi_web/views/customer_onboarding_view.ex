@@ -9,4 +9,11 @@ defmodule DeliveryapiWeb.CustomerOnboardingView do
   end
 
   def render("customer_base_data.json", %{customer: customer}), do: %{customer: customer}
+
+  def render("customer_address_created.json", %{address_id: address_id}) do
+    %{
+      message: "Address created successfully!",
+      address_id: address_id
+    }
+  end
 end
