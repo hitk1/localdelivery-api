@@ -43,6 +43,21 @@ defmodule Customers.Repo.Customer do
     {:ok, result}
   end
 
+  def validate_assign_password(params) do
+    schema = %{
+      customer_id: Ecto.UUID,
+      password: :string,
+      repeat_password: :string
+    }
+
+    result =
+      {%__MODULE__{}, schema}
+      |> cast(params, Map.keys(schema))
+      |> validate_required([:customer_id, :password, :repeat_password])
+
+    {:ok, result}
+  end
+
   defp put_password_hash(
          %Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset
        ) do

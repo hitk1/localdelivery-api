@@ -38,4 +38,12 @@ defmodule DeliveryapiWeb.CustomerOnboardingController do
       |> render("customer_address.json", address: address)
     end
   end
+
+  def assign(conn, params) do
+    with {:ok, _} <- Deliveryapi.assign(params) do
+      conn
+      |> put_status(:ok)
+      |> json(%{message: "assigned"})
+    end
+  end
 end
