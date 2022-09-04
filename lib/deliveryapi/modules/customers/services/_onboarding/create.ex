@@ -5,9 +5,11 @@ defmodule Customers.Services.Onboarding.CreateBaseData do
   alias Deliveryapi.Repo
   alias Deliveryapi.Core.Tools.DateFormatter
 
-  def call(%{"email" => user_email} = params) do
+  def call(params) do
     case Customer.changeset(%{action: "create_base_data", params: params}) do
       {:ok, %Ecto.Changeset{valid?: true} = changeset} ->
+        %{"email" => user_email} = params
+
         with %Customer{} = found_user <-
                Repo.get_by(Customer, email: user_email, is_active: false) do
           update_customer(params, Map.get(found_user, :id))

@@ -38,6 +38,14 @@ defmodule DeliveryapiWeb.ErrorView do
     }
   end
 
+  def render("error.json", error) do
+    IO.inspect(error, label: "UNcatch error")
+
+    %{
+      message: "Unexpected error"
+    }
+  end
+
   defp translate_errors(changeset) do
     traverse_errors(changeset, fn {msg, opts} ->
       Enum.reduce(opts, msg, fn {key, value}, acc ->
