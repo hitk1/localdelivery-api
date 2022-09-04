@@ -21,6 +21,8 @@ defmodule DeliveryapiWeb.Router do
     post "/customers/onboarding/assign", CustomerOnboardingController, :assign
 
     post "/session/customers", SessionController, :customer_session
+
+    put "/session/refresh_token", SessionController, :refresh_token
   end
 
   # Enables LiveDashboard only for development
