@@ -3,6 +3,11 @@ defmodule Sessions.Services.Auth do
 
   alias Customers.Repo.Customer
   alias Deliveryapi.{Error, Repo}
+  alias Tokens.Services.GenerateRefreshToken
+
+  def resource_from_claims(%{"sub" => customer_id}) do
+    Repo.get(Customer, customer_id)
+  end
 
   def subject_for_token(%Customer{id: id}, _claims), do: {:ok, id}
 
@@ -16,7 +21,12 @@ defmodule Sessions.Services.Auth do
 
         with {:ok, %Customer{} = customer} <- get_customer_by_email(email),
              true <- Pbkdf2.verify_pass(password, Map.get(customer, :password_hash)),
-             # %{role: "customer"} -> additional data goes to jwt payload
+             {:ok, refresh_token} <-
+               GenerateRefreshToken.call(%{
+                 "entity" => "customer",
+                 "entity_id" => Map.get(customer, :id)
+               }),
+             # %{role: "customer"} -> additional data goes to jwt payloa"d
              {:ok, token, _claims} <-
                encode_and_sign(
                  customer,
@@ -25,6 +35,7 @@ defmodule Sessions.Services.Auth do
           {:ok,
            %{
              token: token,
+             refresh_token: refresh_token,
              role: "customer",
              customer: %{
                id: Map.get(customer, :id),

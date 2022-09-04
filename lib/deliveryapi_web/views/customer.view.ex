@@ -2,10 +2,11 @@ defmodule DeliveryapiWeb.SessionView do
   use DeliveryapiWeb, :view
 
   def render("customer_login.json", %{session: payload}) do
-    %{token: token, role: role, customer: customer} = payload
+    %{token: token, refresh_token: refresh_token, role: role, customer: customer} = payload
 
     %{
       token: token,
+      refresh_token: refresh_token,
       role: role,
       customer: %{
         id: Map.get(customer, :id),
