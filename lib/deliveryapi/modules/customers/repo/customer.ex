@@ -58,6 +58,21 @@ defmodule Customers.Repo.Customer do
     {:ok, result}
   end
 
+  def validate_login(params) do
+    schema = %{
+      email: :string,
+      password: :string
+    }
+
+    result =
+      {%__MODULE__{}, schema}
+      |> cast(params, Map.keys(schema))
+      |> validate_required([:email, :password])
+      |> validate_format(:email, ~r/@/)
+
+    {:ok, result}
+  end
+
   defp put_password_hash(
          %Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset
        ) do

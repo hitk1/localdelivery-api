@@ -20,7 +20,7 @@ defmodule DeliveryapiWeb.Router do
 
     post "/customers/onboarding/assign", CustomerOnboardingController, :assign
 
-    # post "/customers/onboarding/address", CustomerOnboardingController, :create_address
+    post "/session/customers", SessionController, :customer_session
   end
 
   # Enables LiveDashboard only for development

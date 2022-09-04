@@ -18,6 +18,13 @@ config :deliveryapi, Deliveryapi.Repo,
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 
 config :deliveryapi, Deliveryapi.Core.Tools.DateFormatter, default_timezone: "America/Sao_Paulo"
+
+# Configures the guardian params
+config :deliveryapi, Sessions.Services.Auth,
+  issuer: "deliveryapi",
+  secret_key: "WX2DUV8XNNqT6DlaCt3X0RopHfDZc//mlObndcU47EzNQt9IVVuWEDXCBN+Csuum",
+  ttl: {8, :hours}
+
 # Configures the endpoint
 config :deliveryapi, DeliveryapiWeb.Endpoint,
   url: [host: "localhost"],
