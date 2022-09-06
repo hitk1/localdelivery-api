@@ -1,8 +1,8 @@
 defmodule DeliveryapiWeb.CustomerOnboardingController do
   use DeliveryapiWeb, :controller
 
-  alias Customers.Repo.Customer
   alias CustomerAddresses.Repo.CustomerAddress
+  alias Customers.Repo.Customer
   alias DeliveryapiWeb.FallbackController
 
   action_fallback(FallbackController)

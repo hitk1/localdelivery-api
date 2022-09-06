@@ -5,24 +5,35 @@ defmodule DeliveryapiWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", DeliveryapiWeb do
+  # Session scope
+  scope "/api/session", DeliveryapiWeb do
     pipe_through :api
 
-    # user onboarding
-    post "/customers/onboarding/base_data", CustomerOnboardingController, :create_base_data
+    post "/customers", SessionController, :customer_session
 
-    get "/customers/onboarding/base_data/:customer_id",
+    put "/refresh_token", SessionController, :refresh_token
+  end
+
+  # Customers onboarding
+  scope "/api/customers/onboarding", DeliveryapiWeb do
+    pipe_through :api
+
+    post "/base_data", CustomerOnboardingController, :create_base_data
+
+    get "/base_data/:customer_id",
         CustomerOnboardingController,
         :get_base_data
 
-    post "/customers/onboarding/address", CustomerOnboardingController, :create_address
-    get "/customers/onboarding/address/:address_id", CustomerOnboardingController, :get_address
+    post "/address", CustomerOnboardingController, :create_address
+    get "/address/:address_id", CustomerOnboardingController, :get_address
 
-    post "/customers/onboarding/assign", CustomerOnboardingController, :assign
+    post "/assign", CustomerOnboardingController, :assign
+  end
 
-    post "/session/customers", SessionController, :customer_session
+  scope "/api/merchants/onboarding", DeliveryapiWeb do
+    pipe_through :api
 
-    put "/session/refresh_token", SessionController, :refresh_token
+    post "/base_data", MerchantOnboardingController, :create_base_data
   end
 
   # Enables LiveDashboard only for development
