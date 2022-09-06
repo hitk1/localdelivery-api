@@ -14,22 +14,19 @@ defmodule DeliveryapiWeb.SessionController do
   end
 
   def refresh_token(conn, params) do
-    Deliveryapi.refresh_token(params)
-    |> handle_token(conn)
-
-    # with {:ok, result} <- Deliveryapi.refresh_token(params) do
-    #   conn
-    #   |> put_status(:ok)
-    #   |> render("")
-    # end
+    with %{role: _any} = result <- Deliveryapi.refresh_token(params) do
+      handle_token(result, conn)
+    end
   end
 
-  defp handle_token(%{"role" => "customer"} = result, conn) do
+  defp handle_token(%{role: "customer"} = result, conn) do
     conn
     |> put_status(:ok)
     |> render("customer_login.json", session: result)
   end
 
   # Implement the handle to merchants login
-  # defp handle_token(%{"role" => ""})
+  defp handle_token(%{role: "merchants"} = result, conn) do
+    {:error, "Not implemented yet"}
+  end
 end

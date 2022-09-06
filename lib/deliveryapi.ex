@@ -6,6 +6,7 @@ defmodule Deliveryapi do
   alias Customers.Services.Onboarding.AssignPassword
 
   alias Sessions.Services.Auth, as: Session
+  alias Sessions.Services.RefreshToken
 
   defdelegate create_customer_base_data(params), to: CreateCustomerBaseData, as: :call
   defdelegate get_base_data(params), to: GetCustomerBaseData, as: :call
@@ -15,4 +16,5 @@ defmodule Deliveryapi do
 
   # Sessions
   defdelegate customer_login(params), to: Session, as: :customer_login
+  defdelegate refresh_token(params), to: RefreshToken, as: :refresh_token
 end

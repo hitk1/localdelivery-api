@@ -22,4 +22,17 @@ defmodule Tokens.Repo.Token do
 
     {:ok, result}
   end
+
+  def validate_refresh_token(params) do
+    schema = %{
+      token: Ecto.UUID
+    }
+
+    result =
+      {%__MODULE__{}, schema}
+      |> cast(params, Map.keys(schema))
+      |> validate_required([:token])
+
+    {:ok, result}
+  end
 end
