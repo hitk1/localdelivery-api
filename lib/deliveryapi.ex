@@ -11,6 +11,7 @@ defmodule Deliveryapi do
   alias Merchants.Services.Onboarding.CreateBaseData, as: CreateMerchantBaseData
   alias Merchants.Services.Onboarding.GetBaseData, as: GetMerchantBaseData
   alias Merchants.Services.Onboarding.CreateAddress, as: CreateMerchantAddress
+  alias Merchants.Services.Onboarding.GetAddress, as: GetMerchantAddress
 
   # Customer onboarding
   defdelegate create_customer_base_data(params), to: CreateCustomerBaseData, as: :call
@@ -27,4 +28,5 @@ defmodule Deliveryapi do
   defdelegate create_merchants_base_data(params), to: CreateMerchantBaseData, as: :call
   defdelegate get_merchant_base_data(params), to: GetMerchantBaseData, as: :call
   defdelegate create_merchant_address(params), to: CreateMerchantAddress, as: :call
+  defdelegate get_merchant_address(params), to: GetMerchantAddress, as: :call
 end

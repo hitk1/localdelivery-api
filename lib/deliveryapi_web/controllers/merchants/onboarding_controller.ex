@@ -29,11 +29,11 @@ defmodule DeliveryapiWeb.MerchantOnboardingController do
     end
   end
 
-  # def get_address(conn, params) do
-  #   with {:ok, address} <- Deliveryapi.get_merchant_address(params) do
-  #     conn
-  #     |> put_status(:ok)
-  #     |> render("get_merchant_address.json", address: address)
-  #   end
-  # end
+  def get_address(conn, params) do
+    with {:ok, address} <- Deliveryapi.get_merchant_address(params) do
+      conn
+      |> put_status(:ok)
+      |> render("get_merchant_address.json", address: address)
+    end
+  end
 end

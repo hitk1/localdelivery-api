@@ -30,4 +30,34 @@ defmodule DeliveryapiWeb.MerchantOnboardingView do
       address_id: address_id
     }
   end
+
+  def render("get_merchant_address.json", %{address: address}) do
+    {
+      address_id,
+      address,
+      number,
+      complement,
+      neighborhood,
+      zip_code,
+      city_id,
+      city,
+      ibge_code,
+      state
+    } = address
+
+    %{
+      address: %{
+        id: address_id,
+        address: address,
+        number: number,
+        complement: complement,
+        neighborhood: neighborhood,
+        zip_code: zip_code,
+        city_id: city_id,
+        city: city,
+        ibge_code: ibge_code,
+        state: state
+      }
+    }
+  end
 end
