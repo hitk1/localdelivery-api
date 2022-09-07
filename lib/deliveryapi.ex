@@ -8,8 +8,9 @@ defmodule Deliveryapi do
   alias Sessions.Services.Auth, as: Session
   alias Sessions.Services.RefreshToken
 
-  alias Merchants.Services.CreateBaseData, as: CreateMerchantBaseData
-  alias Merchants.Services.GetBaseData, as: GetMerchantBaseData
+  alias Merchants.Services.Onboarding.CreateBaseData, as: CreateMerchantBaseData
+  alias Merchants.Services.Onboarding.GetBaseData, as: GetMerchantBaseData
+  alias Merchants.Services.Onboarding.CreateAddress, as: CreateMerchantAddress
 
   # Customer onboarding
   defdelegate create_customer_base_data(params), to: CreateCustomerBaseData, as: :call
@@ -25,4 +26,5 @@ defmodule Deliveryapi do
   # Merchants onboarding
   defdelegate create_merchants_base_data(params), to: CreateMerchantBaseData, as: :call
   defdelegate get_merchant_base_data(params), to: GetMerchantBaseData, as: :call
+  defdelegate create_merchant_address(params), to: CreateMerchantAddress, as: :call
 end

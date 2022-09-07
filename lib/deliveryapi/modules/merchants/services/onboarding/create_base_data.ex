@@ -1,4 +1,4 @@
-defmodule Merchants.Services.CreateBaseData do
+defmodule Merchants.Services.Onboarding.CreateBaseData do
   import Ecto.Query, only: [from: 2]
 
   alias Deliveryapi.{Error, Repo}

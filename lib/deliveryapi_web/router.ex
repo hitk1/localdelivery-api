@@ -35,6 +35,8 @@ defmodule DeliveryapiWeb.Router do
 
     post "/base_data", MerchantOnboardingController, :create_base_data
     get "/base_data/:merchant_id", MerchantOnboardingController, :get_base_data
+    post "/address", MerchantOnboardingController, :create_address
+    get "/address/:address_id", MerchantOnboardingController, :get_address
   end
 
   # Enables LiveDashboard only for development

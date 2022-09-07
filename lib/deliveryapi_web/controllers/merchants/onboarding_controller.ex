@@ -20,4 +20,20 @@ defmodule DeliveryapiWeb.MerchantOnboardingController do
       |> render("merchant_base_data.json", merchant: result)
     end
   end
+
+  def create_address(conn, params) do
+    with {:ok, address_id, status_code} <- Deliveryapi.create_merchant_address(params) do
+      conn
+      |> put_status(status_code)
+      |> render("create_merchant_address.json", address_id: address_id)
+    end
+  end
+
+  # def get_address(conn, params) do
+  #   with {:ok, address} <- Deliveryapi.get_merchant_address(params) do
+  #     conn
+  #     |> put_status(:ok)
+  #     |> render("get_merchant_address.json", address: address)
+  #   end
+  # end
 end

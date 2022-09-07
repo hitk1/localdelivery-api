@@ -57,8 +57,8 @@ defmodule CustomerAddresses.Repo.CustomerAddress do
       {%__MODULE__{}, schema_validator}
       |> cast(params, Map.keys(schema_validator))
       |> validate_required(@params_create_required)
-      |> validate_format(:ibge_code, ~r/\d/)
-      |> validate_format(:zip_code, ~r/\d/)
+      |> validate_format(:ibge_code, ~r/^[0-9]*$/)
+      |> validate_format(:zip_code, ~r/^[0-9]*$/)
       |> validate_length(:ibge_code, is: 7)
       |> validate_length(:zip_code, is: 8)
 

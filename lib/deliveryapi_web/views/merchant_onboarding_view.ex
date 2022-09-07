@@ -23,4 +23,11 @@ defmodule DeliveryapiWeb.MerchantOnboardingView do
       }
     }
   end
+
+  def render("create_merchant_address.json", %{address_id: address_id}) do
+    %{
+      message: "Address created successfully!",
+      address_id: address_id
+    }
+  end
 end

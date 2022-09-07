@@ -1,4 +1,4 @@
-defmodule Merchants.Services.GetBaseData do
+defmodule Merchants.Services.Onboarding.GetBaseData do
   alias Ecto.UUID
   alias Deliveryapi.{Error, Repo}
   alias Merchants.Repo.Merchant
