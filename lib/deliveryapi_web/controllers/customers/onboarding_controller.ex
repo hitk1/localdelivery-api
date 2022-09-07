@@ -15,7 +15,7 @@ defmodule DeliveryapiWeb.CustomerOnboardingController do
     end
   end
 
-  def get_base_data(conn, params) do
+  def get_customer_base_data(conn, params) do
     with {:ok, %Customer{} = customer} <- Deliveryapi.get_base_data(params) do
       conn
       |> put_status(:ok)

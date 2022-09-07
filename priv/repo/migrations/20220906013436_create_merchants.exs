@@ -16,7 +16,7 @@ defmodule Deliveryapi.Repo.Migrations.CreateMerchants do
       add :is_ready, :boolean, default: false
       add :responsible, :string, null: false
       add :cpf_responsible, :string, null: false, size: 50
-      add :logo, :string, null: false, size: 800
+      add :logo, :string, size: 800
       add :comission, :decimal, default: 0
 
       timestamps(type: :timestamptz)

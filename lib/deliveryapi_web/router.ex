@@ -10,7 +10,6 @@ defmodule DeliveryapiWeb.Router do
     pipe_through :api
 
     post "/customers", SessionController, :customer_session
-
     put "/refresh_token", SessionController, :refresh_token
   end
 
@@ -30,10 +29,12 @@ defmodule DeliveryapiWeb.Router do
     post "/assign", CustomerOnboardingController, :assign
   end
 
+  # Merchants onboarding
   scope "/api/merchants/onboarding", DeliveryapiWeb do
     pipe_through :api
 
     post "/base_data", MerchantOnboardingController, :create_base_data
+    get "/base_data/:merchant_id", MerchantOnboardingController, :get_base_data
   end
 
   # Enables LiveDashboard only for development

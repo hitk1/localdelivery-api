@@ -36,7 +36,7 @@ defmodule Customers.Repo.Customer do
       |> validate_required([:name, :email, :phone_number])
       |> validate_length(:name, min: 5)
       |> validate_format(:email, ~r/@/)
-      |> validate_format(:phone_number, ~r/\d/)
+      |> validate_format(:phone_number, ~r/^[0-9]*$/)
       |> validate_length(:phone_number, is: 11)
       |> unique_constraint([:email])
 
