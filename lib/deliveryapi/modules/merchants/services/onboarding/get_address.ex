@@ -40,9 +40,8 @@ defmodule Merchants.Services.Onboarding.GetAddress do
       )
 
     case Repo.one(query) do
-      # %MerchantAddress{} = address -> {:ok, address}
-      result -> {:ok, result}
       nil -> {:error, Error.not_found("address not found")}
+      result -> {:ok, result}
     end
   end
 end
