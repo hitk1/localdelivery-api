@@ -2,6 +2,8 @@ defmodule Merchants.Repo.Merchant do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Foods.Repo.Food
+
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "merchants" do
@@ -21,6 +23,8 @@ defmodule Merchants.Repo.Merchant do
     field :cpf_responsible, :string
     field :logo, :string
     field :comission, :decimal
+
+    has_many(:foods, Food)
 
     timestamps(type: :utc_datetime)
   end
