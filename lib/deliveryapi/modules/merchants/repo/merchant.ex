@@ -86,4 +86,19 @@ defmodule Merchants.Repo.Merchant do
 
     {:ok, result}
   end
+
+  def validate_assign_password(params) do
+    schema = %{
+      merchant_id: Ecto.UUID,
+      password: :string,
+      repeat_password: :string
+    }
+
+    result =
+      {%__MODULE__{}, schema}
+      |> cast(params, Map.keys(schema))
+      |> validate_required([:merchant_id, :password, :repeat_password])
+
+    {:ok, result}
+  end
 end

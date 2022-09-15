@@ -36,4 +36,12 @@ defmodule DeliveryapiWeb.MerchantOnboardingController do
       |> render("get_merchant_address.json", address: address)
     end
   end
+
+  def assign_password(conn, params) do
+    with {:ok, _} <- Deliveryapi.assign_merchant_password(params) do
+      conn
+      |> put_status(:ok)
+      |> json(%{message: "assigned"})
+    end
+  end
 end

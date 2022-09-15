@@ -4,7 +4,7 @@ use Mix.Config
 config :deliveryapi, Deliveryapi.Repo,
   username: "postgres",
   password: "rpi1234",
-  database: "deliveryapp",
+  database: "postgres",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
