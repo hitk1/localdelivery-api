@@ -21,7 +21,7 @@ defmodule DeliveryapiWeb.Router do
 
     get "/base_data/:customer_id",
         CustomerOnboardingController,
-        :get_base_data
+        :get_customer_base_data
 
     post "/address", CustomerOnboardingController, :create_address
     get "/address/:address_id", CustomerOnboardingController, :get_address
