@@ -67,6 +67,7 @@ defmodule Customers.Services.Onboarding.CreateAddress do
   defp update_existing_address(
          %{
            "address" => address,
+           "address_alias" => address_alias,
            "number" => number,
            "neighborhood" => neighborhood,
            "complement" => complement,
@@ -81,6 +82,7 @@ defmodule Customers.Services.Onboarding.CreateAddress do
         update: [
           set: [
             address: ^address,
+            address_alias: ^address_alias,
             number: ^number,
             neighborhood: ^neighborhood,
             complement: ^complement,

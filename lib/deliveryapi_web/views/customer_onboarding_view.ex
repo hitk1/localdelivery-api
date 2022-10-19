@@ -24,6 +24,7 @@ defmodule DeliveryapiWeb.CustomerOnboardingView do
       complement,
       neighborhood,
       address_alias,
+      zip_code,
       city_name,
       ibge_code,
       state
@@ -36,6 +37,7 @@ defmodule DeliveryapiWeb.CustomerOnboardingView do
         complement: complement,
         neighborhood: neighborhood,
         address_alias: address_alias,
+        zip_code: zip_code,
         city_name: city_name,
         ibge_code: ibge_code,
         state: state

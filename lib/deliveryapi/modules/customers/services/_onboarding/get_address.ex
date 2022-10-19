@@ -33,6 +33,7 @@ defmodule Customers.Services.Onboarding.GetAddress do
           address.complement,
           address.neighborhood,
           address.address_alias,
+          address.zip_code,
           city.name,
           city.ibge_code,
           city.state_short_name
