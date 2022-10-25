@@ -9,7 +9,7 @@ defmodule Customers.Services.Onboarding.CreateAddress do
 
   def call(params) do
     case CustomerAddress.validate_create_params(params) do
-      {:ok, %Ecto.Changeset{valid?: true} = changeset} ->
+      {:ok, %Ecto.Changeset{valid?: true}} ->
         %{
           "address" => address,
           "number" => number,

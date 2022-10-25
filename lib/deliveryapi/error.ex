@@ -14,4 +14,5 @@ defmodule Deliveryapi.Error do
   def validation_error(error), do: build(:validation_error, error)
   def not_found(error), do: build(:not_found, error)
   def invalid_id(error), do: build(:invalid_id, error)
+  def duplicate_key_error(error), do: build(:dup_key, error)
 end

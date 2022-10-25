@@ -21,6 +21,7 @@ defmodule DeliveryapiWeb.ErrorView do
 
   def render("error.json", %{error: %Changeset{} = changeset}) do
     %{
+      error: "validation_error",
       message: translate_errors(changeset)
     }
   end

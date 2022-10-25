@@ -2,7 +2,7 @@ defmodule Customers.Services.Onboarding.CreateBaseData do
   import Ecto.Query, only: [from: 2]
 
   alias Customers.Repo.Customer
-  alias Deliveryapi.Repo
+  alias Deliveryapi.{Repo, Error}
   alias Deliveryapi.Core.Tools.DateFormatter
 
   def call(params) do
@@ -17,6 +17,7 @@ defmodule Customers.Services.Onboarding.CreateBaseData do
           nil ->
             case Repo.insert(changeset) do
               {:ok, created_customer} -> {:ok, created_customer, :created}
+              error -> deal_error(error)
             end
         end
 
@@ -24,6 +25,20 @@ defmodule Customers.Services.Onboarding.CreateBaseData do
         {:error, changeset}
     end
   end
+
+  defp deal_error({:error, %Ecto.Changeset{valid?: false, errors: validation_errors}} = error) do
+    {key, _value} =
+      validation_errors
+      |> List.first(:error)
+
+    verify_type_validation(key, error)
+  end
+
+  defp deal_error(error), do: error
+
+  defp verify_type_validation(:email, _error), do: {:error, Error.duplicate_key_error("Email já cadastrado")}
+
+  defp verify_type_validation(_any, error), do: {:error, error}
 
   defp update_customer(
          %{
