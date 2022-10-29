@@ -30,6 +30,10 @@ config :deliveryapi, Sessions.Services.RefreshCustomerToken,
   secret_key: "WX2DUV8XNNqT6DlaCt3X0RopHfDZc//mlObndcU47EzNQt9IVVuWEDXCBN+Csuum",
   ttl: {8, :hours}
 
+config :deliveryapi,
+  jwt_issuer: "deliveryapi",
+  jwt_signature: "WX2DUV8XNNqT6DlaCt3X0RopHfDZc//mlObndcU47EzNQt9IVVuWEDXCBN+Csuum"
+
 # Configures the endpoint
 config :deliveryapi, DeliveryapiWeb.Endpoint,
   url: [host: "localhost"],

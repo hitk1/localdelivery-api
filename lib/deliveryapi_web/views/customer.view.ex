@@ -16,4 +16,10 @@ defmodule DeliveryapiWeb.SessionView do
       }
     }
   end
+
+  def render("firebase_token.json", %{token: token}) do
+    %{
+      token: token
+    }
+  end
 end

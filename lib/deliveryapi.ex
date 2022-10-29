@@ -7,6 +7,7 @@ defmodule Deliveryapi do
 
   alias Sessions.Services.Auth, as: Session
   alias Sessions.Services.RefreshToken
+  alias Sessions.Services.Firebase, as: FirebaseToken
 
   alias Merchants.Services.Onboarding.CreateBaseData, as: CreateMerchantBaseData
   alias Merchants.Services.Onboarding.GetBaseData, as: GetMerchantBaseData
@@ -24,6 +25,7 @@ defmodule Deliveryapi do
   # Sessions
   defdelegate customer_login(params), to: Session, as: :customer_login
   defdelegate refresh_token(params), to: RefreshToken, as: :refresh_token
+  defdelegate generate_firebase_token(params), to: FirebaseToken, as: :sign
 
   # Merchants onboarding
   defdelegate create_merchants_base_data(params), to: CreateMerchantBaseData, as: :call

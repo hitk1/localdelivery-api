@@ -29,4 +29,12 @@ defmodule DeliveryapiWeb.SessionController do
   defp handle_token(%{role: "merchants"} = result, conn) do
     {:error, "Not implemented yet"}
   end
+
+  def firebase_token(conn, params) do
+    with {:ok, firebase_token} <- Deliveryapi.generate_firebase_token(params) do
+      conn
+      |> put_status(:ok)
+      |> render("firebase_token.json", token: firebase_token)
+    end
+  end
 end

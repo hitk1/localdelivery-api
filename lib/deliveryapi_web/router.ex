@@ -11,6 +11,7 @@ defmodule DeliveryapiWeb.Router do
 
     post "/customers", SessionController, :customer_session
     put "/refresh_token", SessionController, :refresh_token
+    put "/firebase/:merchant_id", SessionController, :firebase_token
   end
 
   # Customers onboarding

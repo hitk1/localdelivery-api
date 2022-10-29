@@ -52,7 +52,9 @@ defmodule Deliveryapi.MixProject do
       {:swoosh, "~> 1.3"},
       {:hackney, "~> 1.18"},
       {:cowboy, "~> 2.9"},
-      {:ranch, "~> 1.8"}
+      {:ranch, "~> 1.8"},
+      {:jose, "~> 1.11.2"},
+      {:poison, "~> 5.0"}
     ]
   end
 
