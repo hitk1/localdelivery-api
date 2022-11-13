@@ -13,6 +13,14 @@ defmodule DeliveryapiWeb.SessionController do
     end
   end
 
+  def merchant_session(conn, params) do
+    with {:ok, result} <- Deliveryapi.merchant_login(params) do
+      conn
+      |> put_status(:ok)
+      |> json(%{ok: true})
+    end
+  end
+
   def refresh_token(conn, params) do
     with %{role: _any} = result <- Deliveryapi.refresh_token(params) do
       handle_token(result, conn)

@@ -24,6 +24,8 @@ defmodule Deliveryapi do
 
   # Sessions
   defdelegate customer_login(params), to: Session, as: :customer_login
+
+  defdelegate merchant_login(params), to: Session, as: :merchant_login
   defdelegate refresh_token(params), to: RefreshToken, as: :refresh_token
   defdelegate generate_firebase_token(params), to: FirebaseToken, as: :sign
 

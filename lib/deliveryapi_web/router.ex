@@ -10,6 +10,7 @@ defmodule DeliveryapiWeb.Router do
     pipe_through :api
 
     post "/customers", SessionController, :customer_session
+    post "/merchants", SessionController, :merchant_session
     put "/refresh_token", SessionController, :refresh_token
     put "/firebase/:merchant_id", SessionController, :firebase_token
   end
