@@ -25,11 +25,6 @@ config :deliveryapi, DeliveryapiWeb.Guardian.AuthMiddleware,
   secret_key: "WX2DUV8XNNqT6DlaCt3X0RopHfDZc//mlObndcU47EzNQt9IVVuWEDXCBN+Csuum",
   ttl: {8, :hours}
 
-config :deliveryapi, Sessions.Services.RefreshCustomerToken,
-  issuer: "deliveryapi",
-  secret_key: "WX2DUV8XNNqT6DlaCt3X0RopHfDZc//mlObndcU47EzNQt9IVVuWEDXCBN+Csuum",
-  ttl: {8, :hours}
-
 config :deliveryapi,
   jwt_issuer: "deliveryapi",
   jwt_signature: "WX2DUV8XNNqT6DlaCt3X0RopHfDZc//mlObndcU47EzNQt9IVVuWEDXCBN+Csuum"

@@ -19,6 +19,23 @@ defmodule Tokens.Services.GenerateRefreshToken do
     end
   end
 
+  def call(
+        %{
+          "entity" => "merchant",
+          "entity_id" => merchant_id
+        } = params
+      ) do
+    case Repo.get_by(
+           Token,
+           entity: "merchant",
+           entity_id: merchant_id
+         ) do
+
+      %Token{} = token -> update_existing_token(Map.get(token, :id))
+      nil -> create_refresh_token(params)
+    end
+  end
+
   defp update_existing_token(token_id) do
     new_token = UUID.generate()
 

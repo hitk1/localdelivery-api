@@ -17,7 +17,7 @@ defmodule DeliveryapiWeb.SessionController do
     with {:ok, result} <- Deliveryapi.merchant_login(params) do
       conn
       |> put_status(:ok)
-      |> json(%{ok: true})
+      |> render("merchant_login.json", session: result)
     end
   end
 
@@ -34,8 +34,10 @@ defmodule DeliveryapiWeb.SessionController do
   end
 
   # Implement the handle to merchants login
-  defp handle_token(%{role: "merchants"} = result, conn) do
-    {:error, "Not implemented yet"}
+  defp handle_token(%{role: "merchant"} = result, conn) do
+    conn
+    |> put_status(:ok)
+    |> render("merchant_login.json", session: result)
   end
 
   def firebase_token(conn, params) do

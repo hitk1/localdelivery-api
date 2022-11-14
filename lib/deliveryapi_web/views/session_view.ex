@@ -22,4 +22,13 @@ defmodule DeliveryapiWeb.SessionView do
       token: token
     }
   end
+
+  def render("merchant_login.json", %{session: payload}) do
+    %{
+      token: Map.get(payload, :token),
+      refresh_token: Map.get(payload, :refresh_token),
+      role: Map.get(payload, :role),
+      merchant: Map.get(payload, :merchant)
+    }
+  end
 end
